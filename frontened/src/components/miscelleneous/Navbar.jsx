@@ -6,8 +6,10 @@ import { FaBell, FaSortDown } from "react-icons/fa"
 import { Text } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 import { useChatState } from "../../Context/ChatProvider"
-import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
+
+
+// import NotificationBadge from 'react-notification-badge';
+// import {Effect} from 'react-notification-badge';
 
 
 function Navbar({onOpen, user}) {
@@ -44,7 +46,7 @@ function Navbar({onOpen, user}) {
                <div style={{display:"flex"}}>
                     <Menu>
                          <MenuButton fontSize="xl" p="5px">
-                         <NotificationBadge style={{top:"-10px", right:"-5px"}} count={notification.length} effect={Effect.SCALE}/>
+                         {/* <NotificationBadge style={{top:"-10px", right:"-5px"}} count={notification.length} effect={Effect.SCALE}/> */}
                               <FaBell></FaBell> </MenuButton>
                          <MenuList> 
                               {!notification.length && " No new message"}
