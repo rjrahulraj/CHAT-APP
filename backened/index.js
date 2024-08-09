@@ -11,8 +11,8 @@ const messageRouter = require('./router/message-router');
 const app=express();
 app.use(express.json());
 const corseOption={
-     origin:"http://localhost:5173",
-     // origin:"https://snapchat09.netlify.app/",
+     // origin:"http://localhost:5173",
+     origin:"https://snap-chat09.netlify.app/",
      methods:"GET, POST, PUT, DELETE, HEAD,PATCH",
      credential:true
 }
