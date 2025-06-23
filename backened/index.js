@@ -9,16 +9,18 @@ const colors = require("colors");
 const messageRouter = require("./router/message-router");
 
 const app = express();
-app.use(express.json());
-const corseOption = {
-  origin: "http://localhost:5173",
-  // origin:"https://snap-chat.onrender.com",
-  methods: "GET, POST, PUT, DELETE, HEAD,PATCH",
-  credential: true,
-};
 
-// tackling the cors policy
-app.use(cors(corseOption));
+const allowedOrigins = [
+  "https://snap-chat.onrender.com",
+  "http://localhost:5173",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -26,9 +28,10 @@ app.use("/chat", chatRouter);
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
 
-connect_DB().then(() => {
-  console.log("DB connected successfully".rainbow);
-});
+connect_DB()
+  .then(() => console.log("DB connected successfully".rainbow))
+  .catch((err) => console.error("DB connection failed:", err));
+
 const server = app.listen(port, () => {
   console.log(`Server start at :: ${port}`.rainbow.bold);
 });
@@ -36,7 +39,7 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173",
+    origin: ["https://snap-chat.onrender.com", "http://localhost:5173"],
   },
 });
 
